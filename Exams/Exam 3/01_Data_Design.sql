@@ -58,7 +58,7 @@ CREATE TABLE board_games(
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(30) NOT NULL,
 	release_year INT NOT NULL, 
-	rating NUMERIC (2,2) NOT NULL,
+	rating NUMERIC (3,2) NOT NULL,
 	category_id INT NOT NULL,
 	publisher_id INT NOT NULL, 
 	players_range_id INT NOT NULL,
