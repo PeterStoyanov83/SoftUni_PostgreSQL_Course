@@ -1,19 +1,17 @@
-SELECT
-    bg.name,
-    bg.rating,
-    c.name AS category_name
-FROM
-    board_games AS bg
+SELECT 
+	board_games.name,
+	board_games.rating,
+	categories.name AS category_name
+FROM 
+   	board_games
+JOIN 
+	categories ON categories.id = board_games.category_id
 JOIN
-    categories AS c ON bg.category_id = c.id
-JOIN
-    players_ranges AS pr ON bg.players_range_id = pr.id
+	players_ranges ON players_ranges.id = board_games.players_range_id
 WHERE
-    (bg.rating > 7.00 AND (bg.name LIKE '%a%' OR bg.rating > 7.50))
-    AND (pr.min_players >= 2 AND pr.max_players <= 5)
+	(rating > 7.00 AND (board_games.name ILIKE '%a%' OR rating > 7.50)) 
+	AND (players_ranges.min_players BETWEEN 2 AND 5 AND players_ranges.max_players BETWEEN 2 and 5)
 ORDER BY
-    bg.name ASC, bg.rating DESC
-LIMIT 5;
-
-
---this code is not passing the test 0/8
+	board_games.name ASC,
+	rating DESC
+LIMIT 5
